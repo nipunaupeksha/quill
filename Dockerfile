@@ -11,7 +11,7 @@ COPY . .
 
 ENV NEXT_TELEMETRY_DISABLED 1
 
-RUN npm run build && npx convex deploy
+RUN npm run build
 
 ENV NODE_ENV production
 
