@@ -3,6 +3,7 @@ FROM node:20
 WORKDIR /app
 
 COPY package.json package-lock.json* ./
+
 RUN npm cache clean --force && \
     npm install -g npm@latest && \
     npm install
@@ -11,9 +12,16 @@ COPY . .
 
 ENV NEXT_TELEMETRY_DISABLED 1
 
-RUN npm run build && npx convex deploy
-
 ENV NODE_ENV production
+ENV CONVEX_DEPLOYMENT prod:lovely-salmon-504|01618c57b56e6b87461259bc7390c3846567f5a7043b87847bf7145433e136b8de79bac89fe6d92ef59dec5d6be21a0b3872e8
+ENV CONVEX_DEPLOYMENT_KEY prod:lovely-salmon-504|01618c57b56e6b87461259bc7390c3846567f5a7043b87847bf7145433e136b8de79bac89fe6d92ef59dec5d6be21a0b3872e8
+ENV NEXT_PUBLIC_CONVEX_URL https://lovely-salmon-504.convex.cloud
+ENV NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY pk_test_d29uZHJvdXMtbWFzdG9kb24tNjEuY2xlcmsuYWNjb3VudHMuZGV2JA
+ENV CLERK_SECRET_KEY sk_test_UPj9EwtuVRSroatUDG7jWIjtNIXZVLQhRZBZ3o1pbw
+ENV EDGE_STORE_ACCESS_KEY na1YDkytiyuadb0BPilpCwhsTShqsD9i
+ENV EDGE_STORE_SECRET_KEY NA4jvL58BQoMEMGvnobaZrTha8sUSVpjdLBvTGYtQIVo3t82
+
+RUN npm run build
 
 ENV NEXT_TELEMETRY_DISABLED 1
 
