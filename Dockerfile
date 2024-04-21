@@ -26,10 +26,10 @@ RUN npm run build
 ENV NEXT_TELEMETRY_DISABLED 1
 
 EXPOSE 3000
-RUN useradd -ms /bin/bash admin
-RUN chown -R admin:admin /app
+
+RUN chown -R 10014:10014 /app
 RUN chmod 755 /app
-USER admin
+USER 10014
 
 ENV HOSTNAME 0.0.0.0
 ENV PORT 3000
